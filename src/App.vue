@@ -63,7 +63,7 @@ async function handleFileUpload(event: Event) {
     const cleanedText = text.replace(/\s+/g, ' ').trim();
 
     const regex =
-        /([A-Z0-9,]{6,40})\s+([A-ZÉÈÊÀ0-9\+\-\,\²\³\.\/\-\_\s]+(?:\s+[A-ZÉÈÊÀ0-9\+\-\,\²\³\.\/\-\_\s]+)*)\s+(\d{1,2}\s(?:janv|févr|mars|avr|mai|juin|juil|août|sept|oct|nov|déc)\.)\s+(\d+)\s+([A-Z])\s+(\d+(?:,\d{2,4})?€?)\s+(\d+(?:,\d{2})?€?)/g;
+        /([A-Z0-9,]{6,40})\s+([A-ZÉÈÊÀ0-9\+\(\)\-\,\²\³\.\/\-\_\s]+(?:\s+[A-ZÉÈÊÀ0-9\\(\)+\-\,\²\³\.\/\-\_\s]+)*)\s+((\d{1,2}\s(?:janv|févr|mars|avr|mai|juin|juil|août|sept|oct|nov|déc)\.)|demain)\s+(\d+)\s+([A-Z0-9]{1,4})\s+(\d+(?:,\d{2,4})?€?)\s+(\d+(?:,\d{2})?€?)/g
 
     let match;
 
@@ -71,8 +71,7 @@ async function handleFileUpload(event: Event) {
       console.log("Correspondance trouvée : ", match);
 
       const reference = match[1];
-      const quantity = parseInt(match[4], 10);
-
+      const quantity = parseInt(match[5], 10);
       if (!isNaN(quantity) && quantity > 0) {
         extractedItems.push({reference, quantity});
       }
