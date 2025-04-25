@@ -63,8 +63,7 @@ async function handleFileUpload(event: Event) {
     const cleanedText = text.replace(/\s+/g, ' ').trim();
 
     const regex =
-        /([A-Z0-9,]{6,40})\s+([A-ZÉÈÊÀ0-9\+\(\)\-\,\²\³\°\'\<\>\.\/\-\_\s]+(?:\s+[A-ZÉÈÊÀ0-9\\(\)+\-\,\²\³\°\'\>\<\.\/\-\_\s]+)*)\s+((\d{1,2}\s(?:janv|févr|mars|avr|mai|juin|juil|août|sept|oct|nov|déc)\.)|demain|Lundi)\s+(\d+)\s+([A-Z0-9]{1,4})\s/g
-
+        /([A-Z0-9,]{6,40})\s+([A-ZÉÈÊÀ0-9\+\(\)\-\,\²\³\°\'\<\>\.\/\-\_\s]+(?:\s+[A-ZÉÈÊÀ0-9\\(\)+\-\,\²\³\°\'\>\<\.\/\-\_\s]+)*)\s+((\d{1,2}\s(?:janv.|févr.|mars|avr.|mai|juin|juil.|août|sept.|oct.|nov.|déc.))|demain|Lundi)\s+(\d+)\s+([A-Z0-9]{1,4})\s/g
     let match;
 
     while ((match = regex.exec(cleanedText)) !== null) {
